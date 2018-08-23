@@ -6,7 +6,6 @@ namespace pampasoft6
     using System.Data.Entity.Spatial;
     using System.Web.Mvc;
 
-
     public partial class localidades
     {
         [Key]
@@ -17,6 +16,7 @@ namespace pampasoft6
         [Display (Name="Nombre")]
         public string N_LOCAL { get; set; }
 
+        [Required(ErrorMessage = "El {0} es obligatorio")]
         [Display(Name = "Código Postal")]
         public int CP { get; set; }
 
