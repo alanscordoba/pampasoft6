@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="ConexionMysql-Web.config Connection String" description="ConexionMysql Cadena de conexión que usa la aplicación en web.config para obtener acceso a la base de datos." defaultValue="Server=MYSQL7001.site4now.net;Database=db_a3fda3_admin;Uid=a3fda3_admin;Pwd=Aln*2018" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Alan\\3_Net\\Prueba6\\Prueba6\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='ConexionMysql']/@connectionString" />
+  </parameter>
+</parameters>
