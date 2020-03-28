@@ -16,7 +16,6 @@ namespace pampasoft6
         [Display (Name="Nombre")]
         public string N_LOCAL { get; set; }
 
-        [Required(ErrorMessage = "El {0} es obligatorio")]
         [Display(Name = "Código Postal")]
         public int CP { get; set; }
 
