@@ -13,8 +13,8 @@
     <h4>Filtros</h4>
     @using (Html.BeginForm(null, null, FormMethod.Get))
     {
-        <label for="cp">Código Postal</label>
-        <input type="number" name="cp" id="cp" />
+        <label for="codigopostal">Código Postal</label>
+        <input type="number" name="codigopostal" id="codigopostal" />
         <input type="submit" value="Filtrar" class="btn btn-success" />
     }
 
@@ -35,15 +35,15 @@
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(Model => Model.Localidades[0].N_LOCAL)
+                @Html.DisplayNameFor(Model => Model.Localidades[0].Nombre)
             </th>
             <th>
                 <!-- Html.DisplayNameFor(model => model.CP) -->
-                @Html.DisplayNameFor(Model => Model.Localidades[0].CP)
+                @Html.DisplayNameFor(Model => Model.Localidades[0].CodigoPostal)
             </th>
             <th>
                 <!-- Html.DisplayNameFor(model => model.C_DISCADO) -->
-                @Html.DisplayNameFor(Model => Model.Localidades[0].C_DISCADO)
+                @Html.DisplayNameFor(Model => Model.Localidades[0].Discado)
             </th>
             <th></th>
         </tr>
@@ -52,13 +52,13 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.N_LOCAL)
+                    @Html.DisplayFor(modelItem => item.Nombre)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CP)
+                    @Html.DisplayFor(modelItem => item.CodigoPostal)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.C_DISCADO)
+                    @Html.DisplayFor(modelItem => item.Discado)
                 </td>
                 <td>
                     @Html.ActionLink("Editar", "Edit", new { id = item.id }) |

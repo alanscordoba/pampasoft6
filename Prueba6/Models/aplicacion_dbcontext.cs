@@ -9,8 +9,7 @@ namespace pampasoft6
 
     public partial class aplicacion_dbcontext : DbContext
     {
-        public aplicacion_dbcontext()
-            : base("name=ConexionMysql"){}
+        public aplicacion_dbcontext(): base("name=ConexionMysql"){}
  
         public virtual DbSet<localidades> localidades { get; set; }
         public virtual DbSet<provincias> provincias { get; set; }

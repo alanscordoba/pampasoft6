@@ -11,17 +11,16 @@ namespace pampasoft6
         [Key]
         public int id { get; set; }
 
-        [StringLength(30)]
+        [StringLength(100,ErrorMessage = "El campo {0} debe tener una longitud máxima de {1}")]
         [Required (ErrorMessage = "El {0} es obligatorio")]
-        [Display (Name="Nombre")]
-        public string N_LOCAL { get; set; }
+        public string Nombre { get; set; }
 
         [Display(Name = "Código Postal")]
-        public int CP { get; set; }
+        public int CodigoPostal { get; set; }
 
         [StringLength(10)]
         [Display(Name = "Telediscado")]
-        public string C_DISCADO { get; set; }
+        public string Discado { get; set; }
 
         /// <summary>
         /// [Key]

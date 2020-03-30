@@ -26,14 +26,14 @@ namespace pampasoft6.Controllers
         //    return View(model);
         //}
 
-        public ActionResult Index(int? cp, int pagina = 1)
+        public ActionResult Index(int? codigopostal, int pagina = 1)
         {
             var cantidadRegistrosPorPagina = 8; // Debería ser por parámetro
             using (var db = new aplicacion_dbcontext())
             {
-                Func<localidades, bool> predicado = x => !cp.HasValue || cp.Value == x.CP;
+                Func<localidades, bool> predicado = x => !codigopostal.HasValue || codigopostal.Value == x.CodigoPostal;
 
-                var listadolocalidades = db.localidades.Where(predicado).OrderBy(x => x.N_LOCAL)
+                var listadolocalidades = db.localidades.Where(predicado).OrderBy(x => x.Nombre)
                     .Skip((pagina - 1) * cantidadRegistrosPorPagina)
                     .Take(cantidadRegistrosPorPagina).ToList();
                 var totalDeRegistros = db.localidades.Where(predicado).Count();
@@ -44,7 +44,7 @@ namespace pampasoft6.Controllers
                 modelo.TotalDeRegistros = totalDeRegistros;
                 modelo.RegistrosPorPagina = cantidadRegistrosPorPagina;
                 modelo.ValoresQueryString = new RouteValueDictionary();
-                modelo.ValoresQueryString["cp"] = cp;
+                modelo.ValoresQueryString["codigopostal"] = codigopostal;
                 return View(modelo);
             }
         }
@@ -131,8 +131,8 @@ namespace pampasoft6.Controllers
         {
             using (aplicacion_dbcontext db = new aplicacion_dbcontext())
             {
-                var resultado = db.localidades.Where(x => x.N_LOCAL.Contains(term)).OrderBy(x => x.N_LOCAL)
-                    .Select(x => x.N_LOCAL).Take(5).ToList();
+                var resultado = db.localidades.Where(x => x.Nombre.Contains(term)).OrderBy(x => x.Nombre)
+                    .Select(x => x.Nombre).Take(5).ToList();
                 return Json(resultado, JsonRequestBehavior.AllowGet);
             }
         }
