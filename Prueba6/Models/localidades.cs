@@ -11,7 +11,7 @@ namespace pampasoft6
         [Key]
         public int id { get; set; }
 
-        [StringLength(100,ErrorMessage = "El campo {0} debe tener una longitud máxima de {1}")]
+        [StringLength(100,ErrorMessage = "El {0} debe tener una longitud máxima de {1}")]
         [Required (ErrorMessage = "El {0} es obligatorio")]
         public string Nombre { get; set; }
 

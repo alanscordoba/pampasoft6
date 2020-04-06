@@ -1,9 +1,6 @@
 ﻿@model pampasoft6.ViewsModels.Localidades_view
-@{
-    ViewBag.Title = "index";
-}
 
-<h2>index</h2>
+<h2>@ViewBag.Titulo</h2>
 
 <p>
     @Html.ActionLink("Crear nueva", "Create")
@@ -13,13 +10,13 @@
     <h4>Filtros</h4>
     @using (Html.BeginForm(null, null, FormMethod.Get))
     {
-        <label for="cp">Código Postal</label>
-        <input type="number" name="cp" id="cp" />
+        <label for="codigopostal">Código Postal</label>
+        <input type="number" name="codigopostal" id="codigopostal" />
         <input type="submit" value="Filtrar" class="btn btn-success" />
     }
 
     <label for="nombre">Nombre</label>
-    <input type="text" name="nombre" id="nombre"/>  
+    <input type="text" name="nombre" id="nombre" />
     @section scripts{
         @Scripts.Render("~/bundles/jquery-ui")
         <script>
@@ -32,40 +29,40 @@
     }
 </p>
 
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(Model => Model.Localidades[0].N_LOCAL)
-            </th>
-            <th>
-                <!-- Html.DisplayNameFor(model => model.CP) -->
-                @Html.DisplayNameFor(Model => Model.Localidades[0].CP)
-            </th>
-            <th>
-                <!-- Html.DisplayNameFor(model => model.C_DISCADO) -->
-                @Html.DisplayNameFor(Model => Model.Localidades[0].C_DISCADO)
-            </th>
-            <th></th>
-        </tr>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(Model => Model.Localidades[0].Nombre)
+        </th>
+        <th>
+            <!-- Html.DisplayNameFor(model => model.CP) -->
+            @Html.DisplayNameFor(Model => Model.Localidades[0].CodigoPostal)
+        </th>
+        <th>
+            <!-- Html.DisplayNameFor(model => model.C_DISCADO) -->
+            @Html.DisplayNameFor(Model => Model.Localidades[0].Discado)
+        </th>
+        <th></th>
+    </tr>
 
-        @foreach (var item in Model.Localidades)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.N_LOCAL)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CP)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.C_DISCADO)
-                </td>
-                <td>
-                    @Html.ActionLink("Editar", "Edit", new { id = item.id }) |
-                    @Html.ActionLink("Detalles", "Details", new { id = item.id }) |
-                    @Html.ActionLink("Eliminar", "Delete", new { id = item.id })
-                </td>
-            </tr>
-        }
-    </table>
-    @{Html.RenderPartial("_paginador", Model);}
+    @foreach (var item in Model.Localidades)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoPostal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Discado)
+            </td>
+            <td>
+                @Html.ActionLink("Modificar", "Edit", new { id = item.id }) |
+                @Html.ActionLink("Detalles", "Details", new { id = item.id }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.id })
+            </td>
+        </tr>
+    }
+</table>
+@{Html.RenderPartial("_paginador", Model);}

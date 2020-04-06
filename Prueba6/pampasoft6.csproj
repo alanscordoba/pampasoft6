@@ -153,6 +153,18 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003312203378_InitialCreate.cs" />
+    <Compile Include="Migrations\202003312203378_InitialCreate.Designer.cs">
+      <DependentUpon>202003312203378_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003312206564_prueba2.cs" />
+    <Compile Include="Migrations\202003312206564_prueba2.Designer.cs">
+      <DependentUpon>202003312206564_prueba2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004052308395_abmlocalidades.cs" />
+    <Compile Include="Migrations\202004052308395_abmlocalidades.Designer.cs">
+      <DependentUpon>202004052308395_abmlocalidades.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\localidades.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\aplicacion_dbcontext.cs" />
@@ -249,6 +261,9 @@
     <Content Include="Views\Localidades\Create.cshtml" />
     <Content Include="Views\Shared\_paginador.cshtml" />
     <Content Include="Views\Localidades\Index.cshtml" />
+    <Content Include="Views\Localidades\Edit.cshtml" />
+    <Content Include="Views\Localidades\Delete.cshtml" />
+    <Content Include="Views\Localidades\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -259,6 +274,17 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202003312203378_InitialCreate.resx">
+      <DependentUpon>202003312203378_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003312206564_prueba2.resx">
+      <DependentUpon>202003312206564_prueba2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004052308395_abmlocalidades.resx">
+      <DependentUpon>202004052308395_abmlocalidades.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

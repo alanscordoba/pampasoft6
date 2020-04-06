@@ -13,8 +13,6 @@ namespace pampasoft6
  
         public virtual DbSet<localidades> localidades { get; set; }
         public virtual DbSet<provincias> provincias { get; set; }
-        
-
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

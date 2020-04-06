@@ -1,0 +1,38 @@
+﻿@model pampasoft6.localidades
+
+<h2>@ViewBag.Titulo</h2>
+
+<div>
+    <h4>localidades</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CodigoPostal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CodigoPostal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Discado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Discado)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Modificar", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Volver al listado", "Index")
+</p>

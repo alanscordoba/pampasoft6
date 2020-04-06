@@ -10,7 +10,7 @@ namespace pampasoft6.Models
     {
         public int id { get; set; }
 
-        [StringLength(50)]
+        [StringLength(100)]
         public string nombre { get; set; }
     }
 }

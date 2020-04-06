@@ -11,7 +11,7 @@ namespace pampasoft6.Controllers
 {
     public class LocalidadesController : Controller
     {
-
+        private aplicacion_dbcontext db = new aplicacion_dbcontext();
         private LocalidadesRepository _repo;
 
         public LocalidadesController()
@@ -28,6 +28,9 @@ namespace pampasoft6.Controllers
 
         public ActionResult Index(int? codigopostal, int pagina = 1)
         {
+
+            ViewBag.Titulo = "Localidades"; 
+
             var cantidadRegistrosPorPagina = 8; // Debería ser por parámetro
             using (var db = new aplicacion_dbcontext())
             {
@@ -49,15 +52,10 @@ namespace pampasoft6.Controllers
             }
         }
 
-        // GET: Localidades/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
         // GET: Localidades/Create
         public ActionResult Create()
         {
+            ViewBag.Titulo = "Crear Localidad";
             return View();
         }
 
@@ -83,48 +81,77 @@ namespace pampasoft6.Controllers
         }
 
         // GET: Localidades/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
-            return View();
+            ViewBag.Titulo = "Modificar Localidad";
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+            }
+
+            localidades localidades = db.localidades.Find(id);
+            if (localidades == null)
+            {
+                return HttpNotFound();
+            }
+            return View(localidades);
         }
 
         // POST: Localidades/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "Id,Nombre,CodigoPostal,Discado")] localidades localidades)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
-
+                db.Entry(localidades).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            return View(localidades);
         }
 
 
         // GET: Localidades/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
-            return View();
+            ViewBag.Titulo = "Eliminar Localidad";
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+            }
+            localidades localidades = db.localidades.Find(id);
+            if (localidades == null)
+            {
+                return HttpNotFound();
+            }
+            return View(localidades);
         }
 
         // POST: Localidades/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [HttpPost,ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
+            localidades localidades = db.localidades.Find(id);
+            db.localidades.Remove(localidades);
+            db.SaveChanges();
+            return RedirectToAction("Index"); 
+        }
 
-                return RedirectToAction("Index");
-            }
-            catch
+        public ActionResult Details(int? id)
+        {
+            ViewBag.Titulo = "Detalles Localidad";
+            if (id == null)
             {
-                return View();
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
             }
+            localidades localidades = db.localidades.Find(id);
+            if (localidades == null)
+            {
+                return HttpNotFound();
+            }
+            return View(localidades);
         }
 
         public JsonResult BusquedaRapida(string term)

@@ -110,3 +110,7 @@ C:\Users\ac\Source\Repos\pampasoft6\Prueba6\obj\Debug\Prueba6.pdb
 C:\Users\ac\Source\Repos\pampasoft6\Prueba6\obj\Debug\pampasoft6.csprojAssemblyReference.cache
 C:\Users\ac\Source\Repos\pampasoft6\Prueba6\obj\Debug\pampasoft6.csproj.CoreCompileInputs.cache
 C:\Users\ac\Source\Repos\pampasoft6\Prueba6\obj\Debug\pampasoft6.csproj.CopyComplete
+C:\Users\ac\Source\Repos\pampasoft6\Prueba6\obj\Debug\pampasoft6.Migrations.InitialCreate.resources
+C:\Users\ac\Source\Repos\pampasoft6\Prueba6\obj\Debug\pampasoft6.csproj.GenerateResource.cache
+C:\Users\ac\Source\Repos\pampasoft6\Prueba6\obj\Debug\pampasoft6.Migrations.prueba2.resources
+C:\Users\ac\Source\Repos\pampasoft6\Prueba6\obj\Debug\pampasoft6.Migrations.abmlocalidades.resources
