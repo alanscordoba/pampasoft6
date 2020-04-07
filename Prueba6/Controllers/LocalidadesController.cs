@@ -1,25 +1,36 @@
-﻿using pampasoft6.Services;
+﻿using pampasoft6.Data;
+using pampasoft6.Data.Repositorios;
 using pampasoft6.ViewsModels;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
+
 namespace pampasoft6.Controllers
 {
     public class LocalidadesController : Controller
     {
-        private aplicacion_dbcontext db = new aplicacion_dbcontext();
-        private LocalidadesRepository _repo;
-
-        public LocalidadesController()
-        {
-            _repo = new LocalidadesRepository();
-        }
-        // GET: Localidades
+        private AplicacionDbContext db = new AplicacionDbContext();
+       // private LocalidadesRepository _repo;
         
+        private IRepositorio<localidades> _repositorio;
+
+        public LocalidadesController(IRepositorio<localidades> repositorio)
+        {
+            _repositorio = repositorio;
+        //  _repo = new LocalidadesRepository();
+        }
+
+        //public LocalidadesController()
+        //{
+        //    _repo = new LocalidadesRepository();
+        //}
+        // GET: Localidades
+
         //public ActionResult Index()
         //{
         //    var model = _repo.ObtenerTodos();
@@ -29,27 +40,43 @@ namespace pampasoft6.Controllers
         public ActionResult Index(int? codigopostal, int pagina = 1)
         {
 
-            ViewBag.Titulo = "Localidades"; 
+            ViewBag.Titulo = "Localidades";
 
-            var cantidadRegistrosPorPagina = 8; // Debería ser por parámetro
-            using (var db = new aplicacion_dbcontext())
-            {
-                Func<localidades, bool> predicado = x => !codigopostal.HasValue || codigopostal.Value == x.CodigoPostal;
+            //var cantidadRegistrosPorPagina = 8; // Debería ser por parámetro
+            //using (var db = new AplicacionDbContext())
+            //{
+            //    Func<localidades, bool> predicado = x => !codigopostal.HasValue || codigopostal.Value == x.CodigoPostal;
 
-                var listadolocalidades = db.localidades.Where(predicado).OrderBy(x => x.Nombre)
-                    .Skip((pagina - 1) * cantidadRegistrosPorPagina)
-                    .Take(cantidadRegistrosPorPagina).ToList();
-                var totalDeRegistros = db.localidades.Where(predicado).Count();
+            //    var listadolocalidades = db.localidades.Where(predicado).OrderBy(x => x.Nombre)
+            //        .Skip((pagina - 1) * cantidadRegistrosPorPagina)
+            //        .Take(cantidadRegistrosPorPagina).ToList();
+            //    var totalDeRegistros = db.localidades.Where(predicado).Count();
 
-                var modelo = new Localidades_view();
-                modelo.Localidades = listadolocalidades;
-                modelo.PaginaActual = pagina;
-                modelo.TotalDeRegistros = totalDeRegistros;
-                modelo.RegistrosPorPagina = cantidadRegistrosPorPagina;
-                modelo.ValoresQueryString = new RouteValueDictionary();
-                modelo.ValoresQueryString["codigopostal"] = codigopostal;
-                return View(modelo);
-            }
+            //    var modelo = new Localidades_view();
+            //    modelo.Localidades = listadolocalidades;
+            //    modelo.PaginaActual = pagina;
+            //    modelo.TotalDeRegistros = totalDeRegistros;
+            //    modelo.RegistrosPorPagina = cantidadRegistrosPorPagina;
+            //    modelo.ValoresQueryString = new RouteValueDictionary();
+            //    modelo.ValoresQueryString["codigopostal"] = codigopostal;
+            //    return View(modelo);
+            //}
+
+            var cantidadRegistrosPorPagina = 10; // Debería ser por parámetro
+            var parametros = new ParametrosDeQuery<localidades>(pagina,cantidadRegistrosPorPagina);
+            parametros.OrderBy = x => x.Nombre;
+
+            var c_tabla = _repositorio.EncontrarPor(parametros).ToList();
+            var totalDeRegistros = _repositorio.Contar(x => !codigopostal.HasValue || codigopostal.Value == x.CodigoPostal);
+
+            var modelo = new Localidades_view();
+            modelo.Localidades = c_tabla;
+            modelo.PaginaActual = pagina;
+            modelo.TotalDeRegistros = totalDeRegistros;
+            modelo.RegistrosPorPagina = cantidadRegistrosPorPagina;
+            modelo.ValoresQueryString = new RouteValueDictionary();
+            modelo.ValoresQueryString["codigopostal"] = codigopostal;
+            return View(modelo);
         }
 
         // GET: Localidades/Create
@@ -62,13 +89,14 @@ namespace pampasoft6.Controllers
         // POST: Localidades/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(localidades model)
+        public ActionResult Create(localidades c_tabla)
         {
             try
             {
                if (ModelState.IsValid)
                {
-                    _repo.Crear(model);
+                    //_repo.Crear(model);
+                    _repositorio.Agregar(c_tabla);
                     return RedirectToAction("Index");
                 }
             }
@@ -77,86 +105,112 @@ namespace pampasoft6.Controllers
             {
                 // log ex
             }
-            return View(model);
+            //return View(model);
+            return View();
         }
 
         // GET: Localidades/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int Id)
         {
             ViewBag.Titulo = "Modificar Localidad";
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
-            }
 
-            localidades localidades = db.localidades.Find(id);
-            if (localidades == null)
+            var c_tabla = _repositorio.ObtenerPorId(Id);
+            if (c_tabla == null)
             {
                 return HttpNotFound();
             }
-            return View(localidades);
+            return View(c_tabla);
+
+            // if (id == null)
+            //{
+            //    return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+            //}
+
+            //localidades localidades = db.localidades.Find(id);
+            //if (localidades == null)
+            //{
+            //    return HttpNotFound();
+            //}
+            //return View(localidades);
         }
 
-        // POST: Localidades/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Nombre,CodigoPostal,Discado")] localidades localidades)
+        public ActionResult Edit([Bind(Include = "Id,Nombre,CodigoPostal,Discado")] localidades c_tabla)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(localidades).State = System.Data.Entity.EntityState.Modified;
-                db.SaveChanges();
+                //    db.Entry(c_tabla).State = EntityState.Modified;
+                //    db.SaveChanges();
+
+                _repositorio.Actualizar(c_tabla);
                 return RedirectToAction("Index");
             }
-            return View(localidades);
+            return View(c_tabla);
         }
 
-
-        // GET: Localidades/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int Id)
         {
             ViewBag.Titulo = "Eliminar Localidad";
-            if (id == null)
+
+            //if (id == null)
+            //{
+            //    return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+            //}
+            //localidades localidades = db.localidades.Find(id);
+            //if (localidades == null)
+            //{
+            //   return HttpNotFound();
+            //}
+            //return View(localidades);
+
+            var c_tabla = _repositorio.ObtenerPorId(Id);
+            if (c_tabla == null)
             {
-                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+               return HttpNotFound();
             }
-            localidades localidades = db.localidades.Find(id);
-            if (localidades == null)
-            {
-                return HttpNotFound();
-            }
-            return View(localidades);
+            return View(c_tabla);
         }
 
-        // POST: Localidades/Delete/5
         [HttpPost,ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int Id)
         {
-            localidades localidades = db.localidades.Find(id);
-            db.localidades.Remove(localidades);
-            db.SaveChanges();
-            return RedirectToAction("Index"); 
+            //localidades localidades = db.localidades.Find(id);
+            //db.localidades.Remove(localidades);
+            //db.SaveChanges();
+            //return RedirectToAction("Index"); 
+
+            _repositorio.Eliminar(Id);
+            return RedirectToAction("Index");
         }
 
-        public ActionResult Details(int? id)
+        public ActionResult Details(int Id)
         {
             ViewBag.Titulo = "Detalles Localidad";
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
-            }
-            localidades localidades = db.localidades.Find(id);
-            if (localidades == null)
+
+            //if (id == null)
+            //{
+            //    return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+            //}
+            //localidades localidades = db.localidades.Find(id);
+            //if (localidades == null)
+            //{
+            //   return HttpNotFound();
+            //}
+            //return View(localidades);
+
+            var c_tabla = _repositorio.ObtenerPorId(Id);
+            if (c_tabla == null)
             {
                 return HttpNotFound();
             }
-            return View(localidades);
+            return View(c_tabla);
         }
 
         public JsonResult BusquedaRapida(string term)
         {
-            using (aplicacion_dbcontext db = new aplicacion_dbcontext())
+            using (AplicacionDbContext db = new AplicacionDbContext())
             {
                 var resultado = db.localidades.Where(x => x.Nombre.Contains(term)).OrderBy(x => x.Nombre)
                     .Select(x => x.Nombre).Take(5).ToList();

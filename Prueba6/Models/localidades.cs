@@ -1,15 +1,14 @@
 namespace pampasoft6
 {
+    using Pampasoft6.Models;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Data.Entity.Spatial;
     using System.Web.Mvc;
 
-    public partial class localidades
+    public partial class localidades: TablaBase
     {
-        [Key]
-        public int id { get; set; }
 
         [StringLength(100,ErrorMessage = "El {0} debe tener una longitud máxima de {1}")]
         [Required (ErrorMessage = "El {0} es obligatorio")]

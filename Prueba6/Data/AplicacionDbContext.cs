@@ -7,9 +7,9 @@ namespace pampasoft6
     using System.Data.Entity.ModelConfiguration.Conventions;
     using Models;
 
-    public partial class aplicacion_dbcontext : DbContext
+    public partial class AplicacionDbContext : DbContext
     {
-        public aplicacion_dbcontext(): base("name=ConexionMysql"){}
+        public AplicacionDbContext(): base("name=ConexionMysql"){}
  
         public virtual DbSet<localidades> localidades { get; set; }
         public virtual DbSet<provincias> provincias { get; set; }

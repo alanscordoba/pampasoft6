@@ -5,7 +5,7 @@ namespace pampasoft6.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<pampasoft6.aplicacion_dbcontext>
+    internal sealed class Configuration : DbMigrationsConfiguration<pampasoft6.AplicacionDbContext>
     {
         public Configuration()
         {
@@ -13,7 +13,7 @@ namespace pampasoft6.Migrations
             SetSqlGenerator("MySql.Data.MySqlClient", new MySql.Data.Entity.MySqlMigrationSqlGenerator());
         }
 
-        protected override void Seed(pampasoft6.aplicacion_dbcontext context)
+        protected override void Seed(pampasoft6.AplicacionDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 
