@@ -18,6 +18,10 @@ namespace pampasoft6
         {
             // No pluraliza los nombres de las tablas
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+
+            // Llaves foraneas
+            modelBuilder.Entity<localidades>().HasRequired(x => x.Provincia).WithMany().HasForeignKey(x => x.IdProvincia);
+
         }
     }
 }

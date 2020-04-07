@@ -18,6 +18,7 @@ namespace pampasoft6.Controllers
        // private LocalidadesRepository _repo;
         
         private IRepositorio<localidades> _repositorio;
+        private List<SelectListItem> _listadoprovincias;
 
         public LocalidadesController(IRepositorio<localidades> repositorio)
         {
@@ -65,6 +66,7 @@ namespace pampasoft6.Controllers
             var cantidadRegistrosPorPagina = 10; // Debería ser por parámetro
             var parametros = new ParametrosDeQuery<localidades>(pagina,cantidadRegistrosPorPagina);
             parametros.OrderBy = x => x.Nombre;
+            parametros.Include = "Provincia";
 
             var c_tabla = _repositorio.EncontrarPor(parametros).ToList();
             var totalDeRegistros = _repositorio.Contar(x => !codigopostal.HasValue || codigopostal.Value == x.CodigoPostal);
@@ -83,6 +85,21 @@ namespace pampasoft6.Controllers
         public ActionResult Create()
         {
             ViewBag.Titulo = "Crear Localidad";
+
+            {
+                // Se Carga el DropDownList de Provincias
+                var c_provincias = db.provincias.OrderBy(x => x.Nombre).ToList();
+                _listadoprovincias = new List<SelectListItem>();
+                foreach (var item in c_provincias)
+                {
+                    _listadoprovincias.Add(new SelectListItem
+                    {
+                        Text = item.Nombre,
+                        Value = item.Id.ToString()
+                    });
+                }
+                ViewBag.ListadoProvincias = _listadoprovincias;
+            }
             return View();
         }
 
@@ -114,11 +131,28 @@ namespace pampasoft6.Controllers
         {
             ViewBag.Titulo = "Modificar Localidad";
 
-            var c_tabla = _repositorio.ObtenerPorId(Id);
+            var parametros = new ParametrosDeQuery<localidades>(0, 1);
+            parametros.Include = "Provincia";
+
+            var c_tabla = _repositorio.ObtenerPorId(Id, parametros);
             if (c_tabla == null)
             {
                 return HttpNotFound();
             }
+
+            // Se Carga el DropDownList de Provincias
+            var c_provincias = db.provincias.OrderBy(x => x.Nombre).ToList();
+            _listadoprovincias = new List<SelectListItem>();
+            foreach (var item in c_provincias)
+            {
+                _listadoprovincias.Add(new SelectListItem
+                {
+                    Text = item.Nombre,
+                    Value = item.Id.ToString()
+                });
+            }
+            ViewBag.ListadoProvincias = _listadoprovincias;
+
             return View(c_tabla);
 
             // if (id == null)
@@ -136,7 +170,7 @@ namespace pampasoft6.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Nombre,CodigoPostal,Discado")] localidades c_tabla)
+        public ActionResult Edit([Bind(Include = "Id,Nombre,CodigoPostal,Discado,IdProvincia")] localidades c_tabla)
         {
             if (ModelState.IsValid)
             {
@@ -164,7 +198,10 @@ namespace pampasoft6.Controllers
             //}
             //return View(localidades);
 
-            var c_tabla = _repositorio.ObtenerPorId(Id);
+            var parametros = new ParametrosDeQuery<localidades>(0,1);
+            parametros.Include = "Provincia";
+
+            var c_tabla = _repositorio.ObtenerPorId(Id,parametros);
             if (c_tabla == null)
             {
                return HttpNotFound();
@@ -200,7 +237,10 @@ namespace pampasoft6.Controllers
             //}
             //return View(localidades);
 
-            var c_tabla = _repositorio.ObtenerPorId(Id);
+            var parametros = new ParametrosDeQuery<localidades>(0, 1);
+            parametros.Include = "Provincia";
+
+            var c_tabla = _repositorio.ObtenerPorId(Id,parametros);
             if (c_tabla == null)
             {
                 return HttpNotFound();

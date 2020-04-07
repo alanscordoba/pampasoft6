@@ -16,6 +16,7 @@ namespace pampasoft6.Data.Repositorios
         {
             using (var db = new AplicacionDbContext())
             {
+                tabla.FechaModificacion = DateTime.Now;
                 db.Entry(tabla).State = EntityState.Modified;
                 db.SaveChanges();
             }
@@ -25,7 +26,7 @@ namespace pampasoft6.Data.Repositorios
         {
             using (var db = new AplicacionDbContext())
             {
-                //entidad.FechaCreacion = DateTime.Now;
+                tabla.FechaCreacion = DateTime.Now;
                 db.Entry(tabla).State = System.Data.Entity.EntityState.Added;
                 db.SaveChanges();
             }
@@ -46,17 +47,18 @@ namespace pampasoft6.Data.Repositorios
             var orderByClass = ObtenerOrderBy(parametrosDeQuery);
             Expression<Func<T, bool>> whereTrue = x => true;
             var where = (parametrosDeQuery.Where == null) ? whereTrue : parametrosDeQuery.Where;
+            var include = (parametrosDeQuery.Include);
             using (AplicacionDbContext db = new AplicacionDbContext())
             {
                 if (orderByClass.IsAscending)
                 {
-                    return db.Set<T>().Where(where).OrderBy(orderByClass.OrderBy)
+                    return db.Set<T>().Include(include).Where(where).OrderBy(orderByClass.OrderBy)
                     .Skip((parametrosDeQuery.Pagina - 1) * parametrosDeQuery.Top)
                     .Take(parametrosDeQuery.Top).ToList();
                 }
                 else
                 {
-                    return db.Set<T>().Where(where).OrderByDescending(orderByClass.OrderBy)
+                    return db.Set<T>().Include(include).Where(where).OrderByDescending(orderByClass.OrderBy)
                     .Skip((parametrosDeQuery.Pagina - 1) * parametrosDeQuery.Top)
                     .Take(parametrosDeQuery.Top).ToList();
                 }
@@ -75,11 +77,12 @@ namespace pampasoft6.Data.Repositorios
                 new OrderByClass(parametrosDeQuery.OrderByDescending, false);
         }
 
-        public T ObtenerPorId(int id)
+        public T ObtenerPorId(int id, ParametrosDeQuery<T> parametrosDeQuery)
         {
+            var include = (parametrosDeQuery.Include);
             using (var db = new AplicacionDbContext())
             {
-                return db.Set<T>().FirstOrDefault(x => x.Id == id);
+                return db.Set<T>().Include(include).FirstOrDefault(x => x.Id == id);
             }
         }
 

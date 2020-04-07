@@ -165,6 +165,7 @@
     <Compile Include="Controllers\LocalidadesController.cs" />
     <Compile Include="Data\IRepositorio.cs" />
     <Compile Include="Data\ParametrosDeQuery.cs" />
+    <Compile Include="Data\Repositorios\Listados.cs" />
     <Compile Include="Data\Repositorios\Repositorio.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -188,6 +189,18 @@
     <Compile Include="Migrations\202004061159450_borra_campo_fecha.cs" />
     <Compile Include="Migrations\202004061159450_borra_campo_fecha.Designer.cs">
       <DependentUpon>202004061159450_borra_campo_fecha.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004070221129_agrega_fechacreacion.cs" />
+    <Compile Include="Migrations\202004070221129_agrega_fechacreacion.Designer.cs">
+      <DependentUpon>202004070221129_agrega_fechacreacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004070237190_agrega_fechamodificacion.cs" />
+    <Compile Include="Migrations\202004070237190_agrega_fechamodificacion.Designer.cs">
+      <DependentUpon>202004070237190_agrega_fechamodificacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004071109130_agrega_idProvincia.cs" />
+    <Compile Include="Migrations\202004071109130_agrega_idProvincia.Designer.cs">
+      <DependentUpon>202004071109130_agrega_idProvincia.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\TablaBase.cs" />
     <Compile Include="Models\localidades.cs" />
@@ -314,6 +327,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004061159450_borra_campo_fecha.resx">
       <DependentUpon>202004061159450_borra_campo_fecha.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004070221129_agrega_fechacreacion.resx">
+      <DependentUpon>202004070221129_agrega_fechacreacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004070237190_agrega_fechamodificacion.resx">
+      <DependentUpon>202004070237190_agrega_fechamodificacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004071109130_agrega_idProvincia.resx">
+      <DependentUpon>202004071109130_agrega_idProvincia.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
