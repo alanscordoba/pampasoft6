@@ -123,3 +123,6 @@ C:\Users\ac\Source\Repos\pampasoft6\Prueba6\bin\WebActivator.dll
 C:\Users\ac\Source\Repos\pampasoft6\Prueba6\bin\SimpleInjector.xml
 C:\Users\ac\Source\Repos\pampasoft6\Prueba6\bin\SimpleInjector.Integration.Web.xml
 C:\Users\ac\Source\Repos\pampasoft6\Prueba6\bin\SimpleInjector.Integration.Web.Mvc.xml
+C:\Users\ac\Source\Repos\pampasoft6\Prueba6\obj\Debug\pampasoft6.Migrations.agrega_fechacreacion.resources
+C:\Users\ac\Source\Repos\pampasoft6\Prueba6\obj\Debug\pampasoft6.Migrations.agrega_fechamodificacion.resources
+C:\Users\ac\Source\Repos\pampasoft6\Prueba6\obj\Debug\pampasoft6.Migrations.agrega_idProvincia.resources

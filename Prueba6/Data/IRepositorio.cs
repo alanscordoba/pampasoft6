@@ -14,7 +14,8 @@ namespace pampasoft6.Data
         void Eliminar(int Id);
         void Actualizar(T TablaBase);
         int Contar(Expression<Func<T, bool>> where);
-        T ObtenerPorId(int id);
+        T ObtenerPorId(int id, ParametrosDeQuery<T> parametrosDeQuery);
         IEnumerable<T> EncontrarPor(ParametrosDeQuery<T> parametrosDeQuery);
+      
     }
 }

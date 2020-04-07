@@ -1,9 +1,11 @@
 namespace pampasoft6
 {
+    using pampasoft6.Models;
     using Pampasoft6.Models;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
     using System.Web.Mvc;
 
@@ -20,6 +22,13 @@ namespace pampasoft6
         [StringLength(10)]
         [Display(Name = "Telediscado")]
         public string Discado { get; set; }
+
+        [Required(ErrorMessage = "La Provincia es obligatoria")]
+        public int IdProvincia { get; set; }
+        public IEnumerable<SelectListItem> Provincias { get; set; }
+
+        //[Display(Name = "Provincia")]
+        //public provincias Provincia { get; set; }
 
         /// <summary>
         /// [Key]
