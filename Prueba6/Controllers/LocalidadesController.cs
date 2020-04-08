@@ -1,6 +1,7 @@
 ﻿using pampasoft6.Data;
 using pampasoft6.Data.Repositorios;
 using pampasoft6.ViewsModels;
+using Prueba6.Data.Repositorios;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -84,21 +85,24 @@ namespace pampasoft6.Controllers
         // GET: Localidades/Create
         public ActionResult Create()
         {
-            ViewBag.Titulo = "Crear Localidad";
+            ViewBag.Titulo = "Localidad";
 
             {
                 // Se Carga el DropDownList de Provincias
-                var c_provincias = db.provincias.OrderBy(x => x.Nombre).ToList();
-                _listadoprovincias = new List<SelectListItem>();
-                foreach (var item in c_provincias)
-                {
-                    _listadoprovincias.Add(new SelectListItem
-                    {
-                        Text = item.Nombre,
-                        Value = item.Id.ToString()
-                    });
-                }
-                ViewBag.ListadoProvincias = _listadoprovincias;
+                //var c_provincias = db.provincias.OrderBy(x => x.Nombre).ToList();
+                //_listadoprovincias = new List<SelectListItem>();
+                //foreach (var item in c_provincias)
+                //{
+                //    _listadoprovincias.Add(new SelectListItem
+                //    {
+                //        Text = item.Nombre,
+                //        Value = item.Id.ToString()
+                //    });
+                //}
+                //ViewBag.ListadoProvincias = _listadoprovincias;
+
+                var c_listado = new ProvinciasRepositorio();
+                ViewBag.ListadoProvincias = c_listado.ObtenerListado();
             }
             return View();
         }
@@ -129,7 +133,7 @@ namespace pampasoft6.Controllers
         // GET: Localidades/Edit/5
         public ActionResult Edit(int Id)
         {
-            ViewBag.Titulo = "Modificar Localidad";
+            ViewBag.Titulo = "Localidad";
 
             var parametros = new ParametrosDeQuery<localidades>(0, 1);
             parametros.Include = "Provincia";
@@ -141,17 +145,20 @@ namespace pampasoft6.Controllers
             }
 
             // Se Carga el DropDownList de Provincias
-            var c_provincias = db.provincias.OrderBy(x => x.Nombre).ToList();
-            _listadoprovincias = new List<SelectListItem>();
-            foreach (var item in c_provincias)
-            {
-                _listadoprovincias.Add(new SelectListItem
-                {
-                    Text = item.Nombre,
-                    Value = item.Id.ToString()
-                });
-            }
-            ViewBag.ListadoProvincias = _listadoprovincias;
+            //var c_provincias = db.provincias.OrderBy(x => x.Nombre).ToList();
+            //_listadoprovincias = new List<SelectListItem>();
+            //foreach (var item in c_provincias)
+            //{
+            //    _listadoprovincias.Add(new SelectListItem
+            //    {
+            //        Text = item.Nombre,
+            //        Value = item.Id.ToString()
+            //    });
+            //}
+            //ViewBag.ListadoProvincias = _listadoprovincias;
+
+            var c_listado = new ProvinciasRepositorio();
+            ViewBag.ListadoProvincias = c_listado.ObtenerListado();
 
             return View(c_tabla);
 
@@ -185,7 +192,7 @@ namespace pampasoft6.Controllers
 
         public ActionResult Delete(int Id)
         {
-            ViewBag.Titulo = "Eliminar Localidad";
+            ViewBag.Titulo = "Localidad";
 
             //if (id == null)
             //{
@@ -224,7 +231,7 @@ namespace pampasoft6.Controllers
 
         public ActionResult Details(int Id)
         {
-            ViewBag.Titulo = "Detalles Localidad";
+            ViewBag.Titulo = "Localidad";
 
             //if (id == null)
             //{

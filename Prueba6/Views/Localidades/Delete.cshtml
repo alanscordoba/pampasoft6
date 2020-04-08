@@ -2,8 +2,8 @@
 
 <h2>@ViewBag.Titulo</h2>
 
-<h3>¿Confima la eliminación?</h3>
 <div>
+    <h4>Eliminar</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -40,7 +40,8 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">

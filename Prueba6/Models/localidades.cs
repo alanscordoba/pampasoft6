@@ -25,7 +25,8 @@ namespace pampasoft6
 
         [Required(ErrorMessage = "La Provincia es obligatoria")]
         public int IdProvincia { get; set; }
-        public IEnumerable<SelectListItem> Provincias { get; set; }
+        public provincias Provincia { get; set; }
+
 
         //[Display(Name = "Provincia")]
         //public provincias Provincia { get; set; }

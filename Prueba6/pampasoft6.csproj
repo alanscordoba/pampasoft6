@@ -166,6 +166,7 @@
     <Compile Include="Data\IRepositorio.cs" />
     <Compile Include="Data\ParametrosDeQuery.cs" />
     <Compile Include="Data\Repositorios\Listados.cs" />
+    <Compile Include="Data\Repositorios\ProvinciasRepositorio.cs" />
     <Compile Include="Data\Repositorios\Repositorio.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
