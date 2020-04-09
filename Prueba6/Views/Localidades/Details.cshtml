@@ -1,9 +1,12 @@
 ﻿@model pampasoft6.localidades
 
-<h2>@ViewBag.Titulo</h2>
+<ol class="breadcrumb">
+    <li><a href="~/Localidades">Localidades</a></li>
+    <li class="active">@(Model.Nombre)</li>
+
+</ol>
 
 <div>
-    <h4>Detalles</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -40,6 +43,8 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Modificar", "Edit", new { Id = Model.Id }) |
-    @Html.ActionLink("Volver al listado", "Index")
+    <div class="form-actions no-color">
+        <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+    </div>
+    @Html.ActionLink("Modificar", "Edit", new { Id = Model.Id }) 
 </p>

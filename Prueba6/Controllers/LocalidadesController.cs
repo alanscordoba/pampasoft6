@@ -15,11 +15,13 @@ namespace pampasoft6.Controllers
 {
     public class LocalidadesController : Controller
     {
+        
         private AplicacionDbContext db = new AplicacionDbContext();
        // private LocalidadesRepository _repo;
         
         private IRepositorio<localidades> _repositorio;
-        private List<SelectListItem> _listadoprovincias;
+
+        //private List<SelectListItem> _listadoprovincias;
 
         public LocalidadesController(IRepositorio<localidades> repositorio)
         {
@@ -101,8 +103,8 @@ namespace pampasoft6.Controllers
                 //}
                 //ViewBag.ListadoProvincias = _listadoprovincias;
 
-                var c_listado = new ProvinciasRepositorio();
-                ViewBag.ListadoProvincias = c_listado.ObtenerListado();
+                var _listado = new ProvinciasRepositorio();
+                ViewBag.ListadoProvincias = _listado.ObtenerListado();
             }
             return View();
         }
@@ -144,6 +146,11 @@ namespace pampasoft6.Controllers
                 return HttpNotFound();
             }
 
+            var c_listado = new ProvinciasRepositorio();
+            ViewBag.ListadoProvincias = c_listado.ObtenerListado();
+
+            return View(c_tabla);
+
             // Se Carga el DropDownList de Provincias
             //var c_provincias = db.provincias.OrderBy(x => x.Nombre).ToList();
             //_listadoprovincias = new List<SelectListItem>();
@@ -157,22 +164,23 @@ namespace pampasoft6.Controllers
             //}
             //ViewBag.ListadoProvincias = _listadoprovincias;
 
-            var c_listado = new ProvinciasRepositorio();
-            ViewBag.ListadoProvincias = c_listado.ObtenerListado();
 
-            return View(c_tabla);
 
-            // if (id == null)
+            //if (Id == null)
             //{
             //    return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
             //}
 
-            //localidades localidades = db.localidades.Find(id);
+            //localidades localidades = db.localidades.Find(Id);
             //if (localidades == null)
             //{
             //    return HttpNotFound();
             //}
             //return View(localidades);
+
+            //var _listado = new ProvinciasRepositorio();
+            //ViewBag.ListadoProvincias = _listado.ObtenerListado();
+            //return View("Create",c_tabla);
         }
 
         [HttpPost]
@@ -192,7 +200,7 @@ namespace pampasoft6.Controllers
 
         public ActionResult Delete(int Id)
         {
-            ViewBag.Titulo = "Localidad";
+            ViewBag.Tabla  = "Localidad";
 
             //if (id == null)
             //{
@@ -213,7 +221,7 @@ namespace pampasoft6.Controllers
             {
                return HttpNotFound();
             }
-            return View(c_tabla);
+            return View();
         }
 
         [HttpPost,ActionName("Delete")]
@@ -231,7 +239,8 @@ namespace pampasoft6.Controllers
 
         public ActionResult Details(int Id)
         {
-            ViewBag.Titulo = "Localidad";
+            ViewBag.Tabla = "Localidad";
+            ViewBag.Accion = "Detalles";
 
             //if (id == null)
             //{
@@ -264,6 +273,56 @@ namespace pampasoft6.Controllers
                 return Json(resultado, JsonRequestBehavior.AllowGet);
             }
         }
+
+        public ActionResult Crud(int Id = 0)
+        {
+            var c_listado = new ProvinciasRepositorio();
+            ViewBag.ListadoProvincias = c_listado.ObtenerListado();
+
+            if (Id == 0)
+            {
+                return View();
+            }
+            else
+            {
+                var parametros = new ParametrosDeQuery<localidades>(0, 1);
+                parametros.Include = "Provincia";
+
+                var c_tabla = _repositorio.ObtenerPorId(Id, parametros);
+                if (c_tabla == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(c_tabla);
+            }
+        }
+        public ActionResult Guardar(localidades c_tabla)
+        {
+            if (ModelState.IsValid)
+            {
+                if (c_tabla.Id == 0)
+                {
+                    _repositorio.Agregar(c_tabla);
+                }
+                else
+                {
+                    _repositorio.Actualizar(c_tabla);
+                }
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View("~/Views/Localidades/Crud.cshtml",c_tabla);
+            }
+            
+        }
+
+        public ActionResult Eliminar(int Id)
+        {
+            _repositorio.Eliminar(Id);
+            return RedirectToAction("Index");
+        }    
+
 
     }
 }

@@ -203,6 +203,14 @@
     <Compile Include="Migrations\202004071109130_agrega_idProvincia.Designer.cs">
       <DependentUpon>202004071109130_agrega_idProvincia.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004081903543_prueba_cprequired.cs" />
+    <Compile Include="Migrations\202004081903543_prueba_cprequired.Designer.cs">
+      <DependentUpon>202004081903543_prueba_cprequired.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004081906177_prueba_cprequired2.cs" />
+    <Compile Include="Migrations\202004081906177_prueba_cprequired2.Designer.cs">
+      <DependentUpon>202004081906177_prueba_cprequired2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\TablaBase.cs" />
     <Compile Include="Models\localidades.cs" />
     <Compile Include="Migrations\Configuration.cs" />
@@ -302,6 +310,7 @@
     <Content Include="Views\Localidades\Edit.cshtml" />
     <Content Include="Views\Localidades\Delete.cshtml" />
     <Content Include="Views\Localidades\Details.cshtml" />
+    <Content Include="Views\Localidades\Crud.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -337,6 +346,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004071109130_agrega_idProvincia.resx">
       <DependentUpon>202004071109130_agrega_idProvincia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004081903543_prueba_cprequired.resx">
+      <DependentUpon>202004081903543_prueba_cprequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004081906177_prueba_cprequired2.resx">
+      <DependentUpon>202004081906177_prueba_cprequired2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -113,3 +113,15 @@ C:\Users\ac\Source\Repos\pampasoft6\Prueba6\obj\Release\pampasoft6.Migrations.In
 C:\Users\ac\Source\Repos\pampasoft6\Prueba6\obj\Release\pampasoft6.Migrations.prueba2.resources
 C:\Users\ac\Source\Repos\pampasoft6\Prueba6\obj\Release\pampasoft6.Migrations.abmlocalidades.resources
 C:\Users\ac\Source\Repos\pampasoft6\Prueba6\obj\Release\pampasoft6.csproj.GenerateResource.cache
+C:\Users\ac\Source\Repos\pampasoft6\Prueba6\bin\SimpleInjector.dll
+C:\Users\ac\Source\Repos\pampasoft6\Prueba6\bin\SimpleInjector.Integration.Web.dll
+C:\Users\ac\Source\Repos\pampasoft6\Prueba6\bin\SimpleInjector.Integration.Web.Mvc.dll
+C:\Users\ac\Source\Repos\pampasoft6\Prueba6\bin\WebActivator.dll
+C:\Users\ac\Source\Repos\pampasoft6\Prueba6\bin\SimpleInjector.xml
+C:\Users\ac\Source\Repos\pampasoft6\Prueba6\bin\SimpleInjector.Integration.Web.xml
+C:\Users\ac\Source\Repos\pampasoft6\Prueba6\bin\SimpleInjector.Integration.Web.Mvc.xml
+C:\Users\ac\Source\Repos\pampasoft6\Prueba6\obj\Release\pampasoft6.Migrations.Clase_TablaBase.resources
+C:\Users\ac\Source\Repos\pampasoft6\Prueba6\obj\Release\pampasoft6.Migrations.borra_campo_fecha.resources
+C:\Users\ac\Source\Repos\pampasoft6\Prueba6\obj\Release\pampasoft6.Migrations.agrega_fechacreacion.resources
+C:\Users\ac\Source\Repos\pampasoft6\Prueba6\obj\Release\pampasoft6.Migrations.agrega_fechamodificacion.resources
+C:\Users\ac\Source\Repos\pampasoft6\Prueba6\obj\Release\pampasoft6.Migrations.agrega_idProvincia.resources

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <parameters>
-  <parameter name="ConexionMysql-Web.config Connection String" description="ConexionMysql Cadena de conexión que usa la aplicación en web.config para obtener acceso a la base de datos." defaultValue="Server=den1.mysql4.gear.host;Database=adminnet;Uid=adminnet;Pwd=admin*2018" tags="SqlConnectionString">
+  <parameter name="ConexionMysql-Web.config Connection String" description="ConexionMysql Cadena de conexión que usa la aplicación en web.config para obtener acceso a la base de datos." defaultValue="Server=den1.mysql4.gear.host;Database=adminnet;Uid=adminnet;Pwd=admin*2018;ConvertZeroDatetime=True" tags="SqlConnectionString">
     <parameterEntry kind="XmlFile" scope="C:\\Users\\ac\\Source\\Repos\\pampasoft6\\Prueba6\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='ConexionMysql']/@connectionString" />
   </parameter>
 </parameters>

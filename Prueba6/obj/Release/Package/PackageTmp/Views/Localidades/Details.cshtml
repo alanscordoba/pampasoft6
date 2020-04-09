@@ -3,7 +3,7 @@
 <h2>@ViewBag.Titulo</h2>
 
 <div>
-    <h4>localidades</h4>
+    <h4>Detalles</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -30,9 +30,16 @@
             @Html.DisplayFor(model => model.Discado)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.Provincia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Provincia.Nombre)
+        </dd>
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Modificar", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Modificar", "Edit", new { Id = Model.Id }) |
     @Html.ActionLink("Volver al listado", "Index")
 </p>

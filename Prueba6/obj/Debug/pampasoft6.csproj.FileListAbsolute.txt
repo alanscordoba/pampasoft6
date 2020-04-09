@@ -126,3 +126,5 @@ C:\Users\ac\Source\Repos\pampasoft6\Prueba6\bin\SimpleInjector.Integration.Web.M
 C:\Users\ac\Source\Repos\pampasoft6\Prueba6\obj\Debug\pampasoft6.Migrations.agrega_fechacreacion.resources
 C:\Users\ac\Source\Repos\pampasoft6\Prueba6\obj\Debug\pampasoft6.Migrations.agrega_fechamodificacion.resources
 C:\Users\ac\Source\Repos\pampasoft6\Prueba6\obj\Debug\pampasoft6.Migrations.agrega_idProvincia.resources
+C:\Users\ac\Source\Repos\pampasoft6\Prueba6\obj\Debug\pampasoft6.Migrations.prueba_cprequired.resources
+C:\Users\ac\Source\Repos\pampasoft6\Prueba6\obj\Debug\pampasoft6.Migrations.prueba_cprequired2.resources

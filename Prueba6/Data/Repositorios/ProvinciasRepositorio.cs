@@ -21,12 +21,14 @@ namespace Prueba6.Data.Repositorios
                             Value = n.Id.ToString(),
                             Text = n.Nombre
                         }).ToList();
-                var nuevo = new SelectListItem()
-                {
-                    Value = null,
-                    Text = ""
-                };
-                c_provincias.Insert(0, nuevo);
+
+                //var nuevo = new SelectListItem()
+                //{
+                //    Value = null,
+                //    Text = ""
+                //};
+                //c_provincias.Insert(0, nuevo);
+
                 return new SelectList(c_provincias, "Value", "Text");
             }
         }
